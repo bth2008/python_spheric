@@ -2,7 +2,9 @@ import math
 
 
 class Functions:
-
+    """
+    based on original spherical trigonometry scripts on http://gis-lab.info/qa/sphere-geodesic-direct-problem.html
+    """
     def __init__(self):
         self.a_e = 6371.0
 
