@@ -19,7 +19,7 @@ will produce tuple of (latitude, longitude, reverse azimuth)
 > (54.95970446208453, 57.8662593013991, 87.43341127393373)
 
 ### Inverse issue solution
-Is the "inverse" geodesic issue, solve the distance, azimuth and reverse azimuth between to points with assigned coords
+Is the "inverse" geodesic issue, solve the distance, azimuth and reverse azimuth between two points with assigned coordinates
 ```python
 s.inverse(55,61,54.9597,57.866) #latitude1, longitude1, latitude2, longitude2
 ```
