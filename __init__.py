@@ -4,7 +4,27 @@ import math
 f = Functions()
 
 
+def set_units(unit_type='km'):
+    """
+    changes units type for distances
+    :param unit_type: sting 'km' or 'nm'
+    :return: void
+    """
+    if unit_type == 'km':
+        f.a_e = 6371.0
+    elif unit_type == 'nm':
+        f.a_e = 3443.9
+
+
 def direct(lat, lon, distance, azimuth):
+    """
+    solves direct geodesic issue
+    :param lat: float between -90 and 90
+    :param lon: float between -180 and 180
+    :param distance: float
+    :param azimuth: float between 0 and 359
+    :return: tuple(lat,lon,reverse azimuth)
+    """
     lat1 = math.radians(lat)
     lon1 = math.radians(lon)
     azi = math.radians(azimuth)
@@ -15,6 +35,14 @@ def direct(lat, lon, distance, azimuth):
 
 
 def inverse(lat1, lon1, lat2, lon2):
+    """
+    solves inverse geodesic issue
+    :param lat1: float between -90 and 90
+    :param lon1: float between -180 and 180
+    :param lat2: float between -90 and 90
+    :param lon2: float between -180 and 180
+    :return: tuple(azimuth, reverse azimuth, distance)
+    """
     lat1 = math.radians(lat1)
     lon1 = math.radians(lon1)
     lat2 = math.radians(lat2)
@@ -25,6 +53,12 @@ def inverse(lat1, lon1, lat2, lon2):
 
 
 def to_ivac(crd_decimal, crd_type='lat'):
+    """
+    converts decimal to ivac2
+    :param crd_decimal: float
+    :param crd_type: string 'lat' or 'lon', default 'lat'
+    :return: string in ivac2 format
+    """
     prefix = ["N", "S"] if crd_type == 'lat' else ["E", "W"]
     degrees = int(math.floor(abs(crd_decimal)))
     minutes = math.floor(float(abs(crd_decimal)-degrees)*60)
@@ -37,6 +71,11 @@ def to_ivac(crd_decimal, crd_type='lat'):
 
 
 def from_ivac(string_coord):
+    """
+    converts ivac2 format to decimal
+    :param string_coord: string in ivac2 format
+    :return: float
+    """
     numdeg = 4
     if string_coord[0] in ["N", "S"]:
         numdeg = 3
