@@ -52,6 +52,59 @@ def inverse(lat1, lon1, lat2, lon2):
     return math.degrees(azi1), math.degrees(azi2), dist * f.a_e
 
 
+def angular(lat1, lon1, lat2, lon2, az13, az23):
+    """
+    solves angular issue: return coordinates of third point of spherical triangle by given coordinates of two points
+    and azimuths to third point from each of two points
+    :param lat1: float - latitude of first point
+    :param lon1: float - longitude of first point
+    :param lat2: float - latitude of second point
+    :param lon2: float - longitude of second point
+    :param az13: float - azimuth from first to third point
+    :param az23: float - azimuth from second to third point
+    :return: tuple of coordinates for third point, or "Azimuths has no intersection" if error.
+    """
+    lat1 = math.radians(lat1)
+    lon1 = math.radians(lon1)
+    lat2 = math.radians(lat2)
+    lon2 = math.radians(lon2)
+    azi13 = math.radians(az13)
+    azi23 = math.radians(az23)
+    errflag, lat3, lon3 = f.angular(lat1, lon1, lat2, lon2, azi13, azi23)
+    if errflag or (lat3 == 0. and lon3 == 0.):
+        return "Azimuths has no intersection"
+    else:
+        return math.degrees(lat3), math.degrees(lon3)
+
+
+def linear(lat1, lon1, lat2, lon2, dist13, dist23, cc):
+    """
+    solves linear issue: return coordinates of third point of spherical triangle by given coordinates of two points
+     and distances to third point from each of two points
+    :param lat1: float - latitude of first point
+    :param lon1: float - longitude of first point
+    :param lat2: float - latitude of second point
+    :param lon2: float - longitude of second point
+    :param dist13: float - distance from first to third point in selected units
+    :param dist23: float - distance from second to third point in selected units
+    :param cc: enum(0,1) - flag for placing third point:
+                            0 - on the left from Q1-Q2 line (counterclockwise), 1 - on the right of those line (clockwise)
+    :return: tuple of coordinates for third point, or "Vectors has no intersection" if error.
+    """
+    c = (cc != 0.)
+    lat1 = math.radians(lat1)
+    lon1 = math.radians(lon1)
+    lat2 = math.radians(lat2)
+    lon2 = math.radians(lon2)
+    dist13 = dist13 / f.a_e
+    dist23 = dist23 / f.a_e
+    errflag, lat3, lon3 = f.linear(lat1, lon1, lat2, lon2, dist13, dist23, c)
+    if errflag or (lat3 == 0. and lon3 == 0.):
+        return "Vectors has no intersection"
+    else:
+        return math.degrees(lat3), math.degrees(lon3)
+
+
 def to_ivac(crd_decimal, crd_type='lat'):
     """
     converts decimal to ivac2

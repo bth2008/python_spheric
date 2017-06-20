@@ -26,6 +26,20 @@ s.inverse(55,61,54.9597,57.866) #latitude1, longitude1, latitude2, longitude2
 will produce tuple of azimuth, reverse azimuth, distance
 > (270.0000703898066, 87.43326932644362, 200.01656014835072)
 
+### Angular issue
+solves angular issue: return coordinates of third point of spherical triangle by given coordinates of two points and azimuths to third point from each of two points
+```python
+s.angular(55,61,55,50,290,80) #latitude1, longitude1, latitude2, longitude2, azimuth_from_1_to_3, azimuth_from_2_to_3
+```
+> (55.543913134236334, 58.20411810045331)
+
+### Linear issue
+solves linear issue: return coordinates of third point of spherical triangle by given coordinates of two points and distances to third point from each of two points
+```python
+s.linear(55,61,55,60,30,40,1) #latitude1, longitude1, latitude2, longitude2, distance_from_1_to_2, distance_from_2_to_3, 1: right of 1-2 line(CW), 0: left of 1-2 line (CCW)
+```
+>(55.12911870348598, 60.586321710092335)
+
 ### Conversation from decimal to IVAC2 (Icarus Versatile ATC Client 2)
 ```python
 s.to_ivac(54.9597,'lat') #coords, type(lat or lon)
