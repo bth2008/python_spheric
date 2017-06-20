@@ -40,6 +40,28 @@ s.linear(55,61,55,60,30,40,1) #latitude1, longitude1, latitude2, longitude2, dis
 ```
 >(55.12911870348598, 60.586321710092335)
 
+
+### Distance calculation
+return distance between two points (as a part of inverse issue)
+```python
+s.distance(55,61,54.9597,57.866) #latitude1, latitude2, longitude1, longitude2
+```
+> 200.01656014835072
+
+### Azimuth calculation
+return initial azimuth from first point to second point (as a part of inverse issue)
+```python
+s.azimuth(55,61,54.9597,57.866)
+```
+> 270.0000703898066
+
+### Bearing calculation
+returns bearing (also known as reverse azimuth) from second to first point (as a part of inverse issue)
+```python
+s.bearing(55,61,54.9597,57.866)
+```
+> 87.43326932644362
+
 ### Conversation from decimal to IVAC2 (Icarus Versatile ATC Client 2)
 ```python
 s.to_ivac(54.9597,'lat') #coords, type(lat or lon)

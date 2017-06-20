@@ -105,6 +105,21 @@ def linear(lat1, lon1, lat2, lon2, dist13, dist23, cc):
         return math.degrees(lat3), math.degrees(lon3)
 
 
+def distance(lat1, lon1, lat2, lon2):
+    da = inverse(lat1, lon1, lat2, lon2)
+    return da[2]
+
+
+def azimuth(lat1, lon1, lat2, lon2):
+    da = inverse(lat1, lon1, lat2, lon2)
+    return da[0]
+
+
+def bearing(lat1, lon1, lat2, lon2):
+    da = inverse(lat1, lon1, lat2, lon2)
+    return da[1]
+
+
 def to_ivac(crd_decimal, crd_type='lat'):
     """
     converts decimal to ivac2
