@@ -60,3 +60,4 @@ s.from_ivac('E057515760')
 ```
 produce the decimal representation of given coordinate
 > 57.866
+
